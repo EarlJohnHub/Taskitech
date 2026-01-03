@@ -21,25 +21,31 @@ class UserCreate(BaseModel):
     @classmethod
     def validate_account_password(cls, value):
         if len(value) < 8:
-            print("password must be greater than 8 characters")
+            raise ValueError("password must be greater than 8 characters")
         return value
 
-class Task(BaseModel):
-    id: int
+# I have created a base schema for task
+# So that I wont have to repeat things over&over
+class TaskBase(BaseModel):
     title: str
     description: Optional[str] = None
     status: bool
+    priority: int
 
-    due_date: Optional[datetime] = None
+
+class Task(TaskBase):
+    id: int
     owner_id: int
-
-    
     model_config = {
-        "from_attributes" : True
+        "from_attributes" = True
     }
 
-class CreateTask(BaseModel):
-    title: str
+class CreateTask(TaskBase):
+    pass
+
+class UpdateTask(TaskBase):
+    title: Optional[int] = None
     description: Optional[str] = None
-    status: bool
+    status: Optional[bool] = None
+    priority: Optional[int] = None
     due_date: Optional[datetime] = None
