@@ -37,7 +37,7 @@ class Task(TaskBase):
     id: int
     owner_id: int
     model_config = {
-        "from_attributes" = True
+        "from_attributes" : True
     }
 
 class CreateTask(TaskBase):

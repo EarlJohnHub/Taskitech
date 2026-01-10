@@ -1,7 +1,8 @@
-from sqlalchemy import Base, String, DateTime, ForeignKey, func
+from sqlalchemy import String, DateTime, ForeignKey, func
 from datetime import datetime
 from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
+from .repository import Base
 
 
 class User(Base):
